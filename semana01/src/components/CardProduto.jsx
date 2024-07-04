@@ -27,3 +27,4 @@ export default CardProduto;
 
 /* Quando usar o && -> quando tiver uma condição que depende de uma condição */
 /* Quando usar o ? : -> quando tiver duas situações */
+/* Quando quiser colocar a formatação de moeda local automaticamente -> props.precoUnitario.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) */
