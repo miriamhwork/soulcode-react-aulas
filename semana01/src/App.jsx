@@ -1,23 +1,33 @@
 // jsx => Javascript Extended
-// Vai permitir escrever código "HTML"
-// dentro do js
-// Declarativa
-// Açucar sintático
+// Vai permitir escrever código "HTML" dentro do js
+// Declarativa, açúcar sintático
 
-
-import Rodape from "./components/Rodape";
-import Blog from "./components/Blog";
-import Mensagem from "./components/Mensagem";
-import Navbar from "./components/Navbar";
-import CardAluno from "./components/CardAluno";
-import CardProduto from "./components/CardProduto";
-import Listagem from "./components/Listagem";
-import Banner from "./components/Banner";
+import CalculadoraIMC from "./components/CalculadoraIMC";
 
 // Componente principal da aplicação
 function App() {
     return (
         <>
+          <CalculadoraIMC />
+        </>
+    );
+}
+
+export default App;
+
+// O que colocamos dentro da function App durante as aulas
+// import Rodape from "./components/Rodape";
+// import Blog from "./components/Blog";
+// import Mensagem from "./components/Mensagem";
+// import Navbar from "./components/Navbar";
+// import CardAluno from "./components/CardAluno";
+// import CardProduto from "./components/CardProduto";
+// import Listagem from "./components/Listagem";
+// import Banner from "./components/Banner";
+// import Eventos from "./components/Eventos";
+// import Contador from "./components/Contador";
+// import Abas from "./components/Abas";
+// import Carrossel from "./components/Carrossel";
             {/* Aula do dia 03/07 */}
             {/* <Mensagem 
             titulo="TIPOS DE GRÃOS DE CAFÉ: 4 PRINCIPAIS TIPOS!" 
@@ -37,9 +47,11 @@ function App() {
             <CardProduto nome="Fone Wireless" precoUnitario={100} desconto={15}/>
             <CardProduto nome="Carro" precoUnitario={90000} desconto={0}/> */}
             {/* <Listagem /> */}
-            <Banner />
-        </>
-    );
-}
-
-export default App;
+            {/* <Banner /> */}
+            {/* <Eventos /> */}
+            // <Contador valorInicial={20}/>
+            // <Contador valorInicial={0}/>
+            // <Contador valorInicial={1000}/>
+            // <Contador />
+            // <Abas/>
+            // <Carrossel />
