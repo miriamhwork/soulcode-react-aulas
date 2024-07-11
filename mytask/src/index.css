@@ -5,3 +5,7 @@
     gap: 32px;
 }
 
+.form-section {
+    width: 320px;
+    margin: 16px auto; /* vai ficar o formulário centralizado */
+}
