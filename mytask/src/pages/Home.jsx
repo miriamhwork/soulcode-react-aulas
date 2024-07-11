@@ -8,7 +8,7 @@ function Home() {
             <Container className="mt-5" >
                 <h1>Seja bem-vindo!</h1>
                 <Carrossel />
-                <Cards />
+                <Cards/>
             </Container>
         </main>
     );

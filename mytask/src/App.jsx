@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Rodape from "./components/Rodape";
 import Privacy from "./pages/Privacy";
+import NovaTarefa from "./pages/NovaTarefa";
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
 // Route: indicamos a rota (path) e o elemento que será exibido na tela.
@@ -22,6 +23,7 @@ function App() {
           <Route path="/ajuda" element={<Ajuda />}/>
           <Route path="*" element={<NotFound />}/>
           <Route path="/privacy" element={<Privacy/>}/>
+          <Route path="/novatarefa" element={<NovaTarefa/>}/>
         </Routes>
         <Rodape />
       </BrowserRouter>
