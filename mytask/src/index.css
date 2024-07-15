@@ -9,3 +9,7 @@
     width: 320px;
     margin: 16px auto; /* vai ficar o formulário centralizado */
 }
+
+.invalid {
+    color: red;
+}

@@ -1,12 +1,25 @@
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { addTarefa } from "../firebase/tarefas";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function NovaTarefa() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: {errors}} = useForm();
+
+    const navigate = useNavigate();
 
     function salvarTarefa(data) {
-        console.log("Salvar tarefa");
-        console.log(data);
+        // Os dados do formulário são passados para a função de inserir 
+        // Then => aguarda a inserção da tarefa para então exibir o toast
+        addTarefa(data)
+        .then(() => {
+          toast.success("Tarefa adicionada com sucesso!");
+          navigate("/tarefas");
+        })
+        .catch(() => {
+          toast.error("Um erro aconteceu ao adicionar tarefa!");
+        });
     }
 
     return (
@@ -20,16 +33,18 @@ function NovaTarefa() {
                     type="text" 
                     id="titulo" 
                     className="form-control" 
-                    {...register("titulo")}
+                    {...register("titulo", {required: true, maxLength: 200})}
                     />
+                    {errors.titulo && <small className="invalid">O título é inválido!</small>}
                 </div>
                 <div>
                     <label htmlFor="descricao">Descrição</label>
                     <textarea 
                     id="descricao" 
                     className="form-control"
-                    {...register("descricao")}
+                    {...register("descricao", {required: true})}
                     ></textarea>
+                    {errors.descricao && <small className="invalid">A drescrição é inválida!</small>}
                 </div>
                 <div>
                     <label htmlFor="dataConclusao">Data</label>
