@@ -1,12 +1,17 @@
 import { Card, Container, Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom"
-import { getTarefas } from "../firebase/tarefas";
+import { getTarefas, deleteTarefa} from "../firebase/tarefas";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom"
 
 function Tarefas() {
+
     const [tarefas, setTarefas] = useState(null); //começa com null, porque indica que não tem dados para exibir
     // lista de tarefas do return do tarefa.js
+
+    const navigate = useNavigate(); // para usar a função no botão Editar
 
     // função assíncrona, precisa do then, vai pegar os dados da lista Tarefas e mostrar
     function carregarDados() { 
@@ -16,12 +21,23 @@ function Tarefas() {
     })
     }
 
+    function deletarTarefa(id) {
+        // true -> apagar a tarefa, false -> não fazer nada
+        const deletar = confirm("Tem certeza ?");
+        if(deletar) {
+            deleteTarefa(id).then(() => { // não esqueça de importar em cima
+                toast.success("Tarefa removida com sucesso"); // não esqueça de importar em cima
+                carregarDados(); // vai atualizar após o usuário confirmar a exclusão e vai retirar o card da tela do navegador.
+            });
+        }    
+    }
+
     // Executar uma função quando o componente é renderizado a primeira vez
     // useEffect vai chamar a função quando o componente aparece na tela (quando o usuário abrir a página)
     // o array () está vazio para executar a 1ª vez que o usuário entrar na página, chamado de efeito colateral
     useEffect(() => { 
         carregarDados();
-    }, []);
+    }, []); //aqui é um array vazio, vai executar a função na 1ª vez que o usuário entrar
 
     return (
         <main>
@@ -41,9 +57,16 @@ function Tarefas() {
                                 <Badge bg="success">Concluído</Badge> 
                                 : <Badge bg="warning">Pendente</Badge>}
                                 <Badge>{tarefa.categoria}</Badge>
+                                <Badge bg="dark">{new Date(tarefa.dataConclusao).toLocaleDateString()}</Badge>
                             </div>
-                            <Button variant="dark">Editar</Button>
-                            <Button variant="danger">Excluir</Button>
+                            <Button variant="dark" onClick={() => {
+                                navigate(`/tarefas/editar/${tarefa.id}`);
+                            }}>Editar</Button>
+                            {/* O botão Editar vai redirecionar para a página de editar a tarefa específica com o id, conforme montamos o Route no App.jsx */}
+                            <Button variant="danger" onClick={() => deletarTarefa(tarefa.id)}>
+                            Excluir 
+                            {/* O botão Excluir vai chamar a função deletarTarefa */}
+                            </Button>
                             </Card.Body>
                         </Card>
                     })}
@@ -55,4 +78,3 @@ function Tarefas() {
 }
 
 export default Tarefas;
-

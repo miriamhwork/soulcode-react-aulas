@@ -9,7 +9,9 @@ import Rodape from "./components/Rodape";
 import Privacy from "./pages/Privacy";
 import NovaTarefa from "./pages/NovaTarefa";
 import Tarefas from "./pages/Tarefas";
+import EditarTarefa from "./pages/EditarTarefa";
 import { Toaster } from "react-hot-toast";
+
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
 // Route: indicamos a rota (path) e o elemento que será exibido na tela.
@@ -25,12 +27,13 @@ function App() {
           <Route path="/ajuda" element={<Ajuda />}/>
           <Route path="/tarefas" element={<Tarefas />}/>
           <Route path="/tarefas/adicionar" element={<NovaTarefa/>}/>
+          <Route path="/tarefas/editar/:id" element={<EditarTarefa/>} />
           <Route path="*" element={<NotFound />}/>
           <Route path="/privacy" element={<Privacy/>}/>
         </Routes>
         <Rodape />
       </BrowserRouter>
-      <Toaster position="bottom-rigth"/>
+      <Toaster position="top-rigth"/>
     </>
   );
 }
