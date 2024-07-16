@@ -5,13 +5,14 @@ import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 
 function Tarefas() {
-    const [tarefas, setTarefas] = useState(null); //null indica que não tem dados para exibir
+    const [tarefas, setTarefas] = useState(null); //começa com null, porque indica que não tem dados para exibir
+    // lista de tarefas do return do tarefa.js
 
     // função assíncrona, precisa do then, vai pegar os dados da lista Tarefas e mostrar
     function carregarDados() { 
     // O then devolve a lista de tarefas da coleção
-    getTarefas().then((resultados) => { // dentro do () vai colocar os resultados que é a lista de tarefas, pode ser qualquer nome
-        setTarefas(resultados); // escolhe o que vai fazer com esses dados da coleção do Firestore, nesse caso, vai setar a lista para conseguir exibir na interface
+    getTarefas().then((resultados) => { // dentro do ( ) vai colocar os resultados (retorno do getTarefas) que é a lista de tarefas, pode ser qualquer nome
+        setTarefas(resultados); // escolhe o que vai fazer com esses dados da coleção do Firestore, nesse caso, vai setar a lista para conseguir exibir na interface. Vai setar aquele useState que era null.
     })
     }
 
@@ -46,7 +47,8 @@ function Tarefas() {
                             </Card.Body>
                         </Card>
                     })}
-                </section> : <Loader />}
+                </section> : <Loader />} 
+                {/* chama o componente Loader para mostrar par ao usuário que está carregando*/}
             </Container>
         </main>
     );

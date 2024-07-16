@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function NovaTarefa() {
     const { register, handleSubmit, formState: {errors}} = useForm();
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // para usar o useNavigate na função e poder levar o usuário para outra página (navegação imperativa)
 
     function salvarTarefa(data) {
         // Os dados do formulário são passados para a função de inserir 
@@ -15,7 +15,7 @@ function NovaTarefa() {
         addTarefa(data)
         .then(() => {
           toast.success("Tarefa adicionada com sucesso!");
-          navigate("/tarefas");
+          navigate("/tarefas"); //vai usar o navigate para levar para a ágina de tarefas, mas só funciona com caminhos dentro da aplicação, por exemplo, levar para a pág do Google não poderia, teria que usar o Routes e Link
         })
         .catch(() => {
           toast.error("Um erro aconteceu ao adicionar tarefa!");
